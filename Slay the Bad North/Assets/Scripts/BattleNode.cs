@@ -2,23 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class BattleNode : MonoBehaviour
+public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
-    public List<BattleNode> nextNode{get;set;}
+    [SerializeField] Image image;
+    public List<BattleNode> prevNode{get;set;}
     public int nodeLevel{get;set;}
     public int nodeLayer{get;set;}
     public bool completed{get;set;}
-    
-    public BattleNode(List<BattleNode> previousNode,int nodeLevel,bool completed){
-        this.nextNode = previousNode;
-        this.nodeLevel = nodeLevel;
-        this.completed = completed;
-    }
 
 
     public override string ToString(){
-        var numberOfNodes = nextNode == null ? 0 : nextNode.Count;
+        var numberOfNodes = prevNode == null ? 0 : prevNode.Count;
         return $" PreviousNodes:{numberOfNodes}, NodeLevel:{nodeLevel}, Completed:{completed}";
+    }
+
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    {
+        image.color = Color.green;
+    }
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        image.color = Color.cyan;
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        image.color = Color.white;
     }
 }
