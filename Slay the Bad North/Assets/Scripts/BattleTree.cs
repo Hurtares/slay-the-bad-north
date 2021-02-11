@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleTree : MonoBehaviour
 {
-    [SerializeField] GameObject battleNodePrefab;
+    [SerializeField] BattleNode battleNodePrefab;
     List<BattleNode> battleNodes;
     void Start()
     {
@@ -18,22 +18,23 @@ public class BattleTree : MonoBehaviour
     }
 
     public void GenerateBattleTree(){
-        battleNodes.Add(new BattleNode( null,0,false ) );
-        battleNodes.Add(new BattleNode(new List<BattleNode>(new BattleNode[]{battleNodes[0]}),1,false));
-        battleNodes.Add(new BattleNode(new List<BattleNode>(new BattleNode[]{battleNodes[1]}),2,false));
-        battleNodes.Add(new BattleNode(new List<BattleNode>(new BattleNode[]{battleNodes[2]}),3,false));
-
-        Debug.Log(battleNodes[0].ToString());
-        Debug.Log(battleNodes[1].ToString());
-        Debug.Log(battleNodes[2].ToString());
-        Debug.Log(battleNodes[3].ToString());
-        battleNodes[0].completed = true;
-        Debug.Log(battleNodes[0].ToString());
-        battleNodes.ForEach( p => PlaceBattleNode(p));
+        
+        for (int i = 0; i < 5; i++)
+        {
+            var battleNode = Instantiate(battleNodePrefab,this.transform);
+            battleNode.nextNode = new List<BattleNode>();
+            battleNode.nodeLevel = i;
+            battleNode.completed = false;
+            battleNodes.Add( battleNode );
+            if (i!=0)
+            {
+                battleNodes[i-1].nextNode.Add(battleNode);
+            }
+        }
+        battleNodes.ForEach(n => PlaceBattleNode(n));
     }
 
     void PlaceBattleNode(BattleNode node){
-        var nodeObject = Instantiate(battleNodePrefab,transform);
-        nodeObject.transform.position = new Vector3(nodeObject.transform.position.x,(node.nodeLevel*55)+25,nodeObject.transform.position.z);
+        node.transform.position = new Vector3(node.transform.position.x,(node.nodeLevel*55)+25,node.transform.position.z);
     }
 }
