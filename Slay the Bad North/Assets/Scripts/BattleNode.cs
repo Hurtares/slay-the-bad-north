@@ -5,6 +5,13 @@ using System.Runtime.CompilerServices;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum BattleNodeType
+{
+    Normal,
+    Hard,
+    Free
+}
+
 public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
     [SerializeField] Image image;
@@ -12,6 +19,7 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int nodeLevel{get;set;}
     public int nodeLayer{get;set;}
     public bool completed{get;set;}
+    public BattleNodeType nodeType{get;set;}
 
 
     public override string ToString(){

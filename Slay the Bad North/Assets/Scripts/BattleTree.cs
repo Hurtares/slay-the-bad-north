@@ -6,6 +6,7 @@ using System.Linq;
 public class BattleTree : MonoBehaviour
 {
     [SerializeField] BattleNode battleNodePrefab;
+    [SerializeField] RectTransform linePrefab;
     List<BattleNode> battleNodes;
     void Start()
     {
@@ -60,11 +61,34 @@ public class BattleTree : MonoBehaviour
             }
         }
 
-        battleNodes.ForEach(n => PlaceBattleNode(n));
+        battleNodes.ForEach(n => { 
+            PlaceBattleNode(n);
+            n.prevNode.ForEach(p => DrawLine(n,p));
+            });
     }
 
     void PlaceBattleNode(BattleNode node)
     {
-        node.transform.position = new Vector3(node.transform.position.x + (node.nodeLayer * 55), (node.nodeLevel * 55) + 25, node.transform.position.z);
+        node.transform.position = new Vector3(node.transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 100, node.transform.position.z);
+    }
+    void DrawLine(BattleNode prev, BattleNode next){
+        RectTransform prevRect = prev.GetComponent<RectTransform>();
+        RectTransform nextRect = next.GetComponent<RectTransform>();
+        RectTransform aux;
+
+        if (prevRect.localPosition.x>nextRect.localPosition.x)
+        {
+            aux = prevRect;
+            prevRect = nextRect;
+            nextRect = aux; 
+        }
+
+        RectTransform rectTransform = Instantiate(linePrefab,Vector3.zero,Quaternion.identity,this.transform);
+        rectTransform.SetSiblingIndex(0);
+        rectTransform.localPosition = (prevRect.localPosition + nextRect.localPosition) / 2;
+        rectTransform.localPosition = new Vector3(rectTransform.localPosition.x,rectTransform.localPosition.y,-1);
+        Vector3 dif = nextRect.localPosition - prevRect.localPosition;
+        rectTransform.sizeDelta = new Vector3(dif.magnitude, 5);
+        rectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 180 * Mathf.Atan(dif.y / dif.x) / Mathf.PI));
     }
 }
