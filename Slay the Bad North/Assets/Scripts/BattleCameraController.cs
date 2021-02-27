@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleCameraController : MonoBehaviour
 {
-     public float ScreenEdgeBorderThickness = 5.0f; // distance from screen edge. Used for mouse movement
+    public float ScreenEdgeBorderThickness = 5.0f; // distance from screen edge. Used for mouse movement
 
     [Header("Camera Mode")]
     [Space]
@@ -46,15 +46,17 @@ public class BattleCameraController : MonoBehaviour
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         initialPos = transform.position;
         initialRot = transform.rotation;
         zoomLimit.x = 15;
         zoomLimit.y = 65;
-	}
-	
-	
-	void Update () {
+    }
+
+
+    void Update()
+    {
 
         # region Camera Mode
 
@@ -62,44 +64,44 @@ public class BattleCameraController : MonoBehaviour
         if (RTSMode == true) FlyCameraMode = false;
         if (FlyCameraMode == true) RTSMode = false;
 
-        # endregion
+        #endregion
 
         #region Movement
 
-            panMovement = Vector3.zero;
+        panMovement = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness)
-            {
-                panMovement += Vector3.forward * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= ScreenEdgeBorderThickness)
-            {
-                panMovement -= Vector3.forward * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= ScreenEdgeBorderThickness)
-            {
-                panMovement += Vector3.left * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
-            {
-                panMovement += Vector3.right * panSpeed * Time.deltaTime;
-                //pos.x += panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                panMovement += Vector3.up * panSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-                panMovement += Vector3.down * panSpeed * Time.deltaTime;
-            }
+        if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness)
+        {
+            panMovement += Vector3.forward * panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= ScreenEdgeBorderThickness)
+        {
+            panMovement -= Vector3.forward * panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= ScreenEdgeBorderThickness)
+        {
+            panMovement += Vector3.left * panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
+        {
+            panMovement += Vector3.right * panSpeed * Time.deltaTime;
+            //pos.x += panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            panMovement += Vector3.up * panSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            panMovement += Vector3.down * panSpeed * Time.deltaTime;
+        }
 
-            if(RTSMode) transform.Translate(panMovement, Space.World);
-            else if(FlyCameraMode) transform.Translate(panMovement, Space.Self);
+        if (RTSMode) transform.Translate(panMovement, Space.World);
+        else if (FlyCameraMode) transform.Translate(panMovement, Space.Self);
 
 
         //increase pan speed
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) 
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
             || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)
             || Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q)
             || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness
@@ -121,7 +123,7 @@ public class BattleCameraController : MonoBehaviour
         #region Zoom
 
         Camera.main.fieldOfView -= Input.mouseScrollDelta.y * zoomSpeed;
-        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView,zoomLimit.x,zoomLimit.y);
+        Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView, zoomLimit.x, zoomLimit.y);
 
         #endregion
 
@@ -179,7 +181,7 @@ public class BattleCameraController : MonoBehaviour
             pos.x = Mathf.Clamp(pos.x, widthLimit.x, widthLimit.y);
             transform.position = pos;
         }
-        
+
 
 
         #endregion
