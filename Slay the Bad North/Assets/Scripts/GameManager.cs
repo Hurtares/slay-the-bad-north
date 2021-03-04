@@ -5,15 +5,16 @@ public class GameManager : MonoBehaviour
 {
     public float Sound = 100;
     public Race SelectedRace = Race.HUMAN;
-    public static GameManager instance;
+    public static GameManager Instance;
     public BattleTree battleTree;
+    public BattleNode currentNode;
 
     private void Awake() {
-        if (GameManager.instance != null)
+        if (GameManager.Instance != null)
         {
             GameObject.Destroy(this);
         }else{
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(this);
         }
     }

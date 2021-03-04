@@ -11,13 +11,13 @@ public class BattleTree : MonoBehaviour
     List<BattleNode> battleNodes;
     void Start()
     {
-        if (GameManager.instance.battleTree == null)
+        if (GameManager.Instance.battleTree == null)
         {
             battleNodes = new List<BattleNode>();
             GenerateBattleTree();
         }
         else{
-            battleNodes = GameManager.instance.battleTree.battleNodes;
+            battleNodes = GameManager.Instance.battleTree.battleNodes;
         }
         DrawBattleTree();
     }
@@ -52,8 +52,6 @@ public class BattleTree : MonoBehaviour
                 battleNode.nodeLevel = i;
                 battleNode.nodeLayer = 0;
             }
-
-            battleNode.completed = false;
             battleNodes.Add(battleNode);
 
             if (i != 0)
@@ -79,9 +77,11 @@ public class BattleTree : MonoBehaviour
                 }
             }
         }
+        //execoes
+        battleNodes[0].state = NodeState.Open;
         battleNodes[3].prevNode.Add(battleNodes[10]);
 
-        GameManager.instance.battleTree = this;
+        GameManager.Instance.battleTree = this;
     }
 
     public void DrawBattleTree(){
