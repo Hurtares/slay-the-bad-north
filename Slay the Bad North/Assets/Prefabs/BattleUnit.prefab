@@ -399,11 +399,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab1ab44828b05e4a8f0013ada047f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 2398711407197867062}
   health: 1
+  healthBar: {fileID: 2398711407197867062}
   controller: {fileID: 0}
   goal: {x: 0, y: 0, z: 0}
   isAI: 0
+  healthBarSprites:
+  - {fileID: 5972140380756631857, guid: 81f247c42955c0843908a7272c4f60ed, type: 3}
+  - {fileID: -2484030861835244207, guid: 81f247c42955c0843908a7272c4f60ed, type: 3}
 --- !u!114 &8162751382951551452
 MonoBehaviour:
   m_ObjectHideFlags: 0

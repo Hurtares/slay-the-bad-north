@@ -59,11 +59,12 @@ namespace UnitAI
         {
             patrolPoints = nav.controller.patrolPoints;
             agent = nav.GetComponent<NavMeshAgent>();
+             destPoint = UnityEngine.Random.Range(0, patrolPoints.Length);
             GotoNextPoint();
         }
         public override void Update(UnitNavigation nav)
         {
-
+            // FIND ENEMIES
             int layerMask = 1 << 9;
             var collider = Physics.OverlapSphere(nav.transform.position, 2f, layerMask);
 
@@ -84,7 +85,19 @@ namespace UnitAI
             {
                 nav.setUnitToAttack(possibleEnemy.gameObject);
                 nav.setActiveAIBehavior<AttackBehaviour>();
+                return;
             }
+
+            // FIND DIAMOND
+            layerMask = 1 << 11;
+            collider = Physics.OverlapSphere(nav.transform.position, 4f, layerMask);
+            foreach (var diamond in collider)
+            {
+                nav.setActiveAIBehavior<AttackDiamondBehaviour>();
+                return;
+            }
+
+
 
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
                 GotoNextPoint();
@@ -107,7 +120,7 @@ namespace UnitAI
         private NavMeshAgent agent;
         float attackSpeed = 1f;
         float lastAttack = float.MinValue;
-    
+
 
         public override void Start(UnitNavigation nav)
         {
@@ -130,17 +143,80 @@ namespace UnitAI
                 if (!agent.pathPending && agent.remainingDistance > 2f)
                 {
                     agent.destination = unit.transform.position;
-                } else {
+                }
+                else
+                {
                     var dist = Vector3.Distance(unit.transform.position, nav.transform.position);
 
-                    if(dist > 2f) {
+                    if (dist > 2f)
+                    {
                         agent.destination = unit.transform.position;
-                    } else {            
+                    }
+                    else
+                    {
                         if (Time.time > lastAttack + attackSpeed)
                         {
                             lastAttack = Time.time;
                             var unitNav = nav.getUnitToAttack().GetComponent<UnitNavigation>();
                             unitNav.removeLife(0.1f);
+                        }
+                    }
+
+                }
+
+            }
+            else
+            {
+                nav.setActiveAIBehavior<PatrolBehaviour>();
+            }
+        }
+
+    }
+
+    public class AttackDiamondBehaviour : AIBehaviour
+    {
+        private NavMeshAgent agent;
+        float attackSpeed = 1f;
+        float lastAttack = float.MinValue;
+
+
+        public override void Start(UnitNavigation nav)
+        {
+            agent = nav.GetComponent<NavMeshAgent>();
+            GameObject diamond = nav.controller.getDiamondObject();
+            if (diamond)
+            {
+                agent.destination = diamond.transform.position;
+            }
+            else
+            {
+                nav.setActiveAIBehavior<PatrolBehaviour>();
+            }
+        }
+        public override void Update(UnitNavigation nav)
+        {
+            GameObject diamond = nav.controller.getDiamondObject();
+            if (diamond)
+            {
+                if (!agent.pathPending && agent.remainingDistance > 4f)
+                {
+                    agent.destination = diamond.transform.position;
+                }
+                else
+                {
+                    var dist = Vector3.Distance(diamond.transform.position, nav.transform.position);
+
+                    if (dist > 4f)
+                    {
+                        agent.destination = diamond.transform.position;
+                    }
+                    else
+                    {
+                        if (Time.time > lastAttack + attackSpeed)
+                        {
+                            lastAttack = Time.time;
+                            var diamondController = diamond.GetComponent<DiamondController>();
+                            diamondController.removeLife(0.1f);
                         }
                     }
 
