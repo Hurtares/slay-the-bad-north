@@ -26,6 +26,9 @@ public class UnitNavigation : MonoBehaviour
 
     public bool isAI = false;
 
+    [SerializeField]
+    Sprite[] healthBarSprites; // 0 - PLAYER; 1 - AI
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,9 @@ public class UnitNavigation : MonoBehaviour
 
         if (isAI)
         {
+            
+            healthBar.sprite = healthBarSprites[1];
+
             behaviors.Add(
                 new IdleBehaviour()
             );
@@ -47,7 +53,12 @@ public class UnitNavigation : MonoBehaviour
             behaviors.Add(
                new AttackBehaviour()
            );
+            behaviors.Add(
+               new AttackDiamondBehaviour()
+           );
             setActiveAIBehavior<IdleBehaviour>();
+        } else {
+            healthBar.sprite = healthBarSprites[0];
         }
     }
 
