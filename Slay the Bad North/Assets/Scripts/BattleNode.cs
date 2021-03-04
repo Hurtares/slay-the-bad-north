@@ -20,6 +20,29 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     public int nodeLayer{get;set;}
     public bool completed{get;set;}
     public BattleNodeType nodeType{get;set;}
+    Color _nodeColor = Color.white;
+    public Color nodeColor{
+        get{
+            return _nodeColor;
+        }
+        set{
+            _nodeColor = value;
+            image.color = _nodeColor;
+        }
+    }
+
+    public void UpdateNode(){
+        if (completed)
+        {
+            nodeColor = Color.red;
+        }else
+        {
+            if (prevNode.Find(n => n.completed==true)!=null)
+            {
+                nodeColor = Color.green;
+            }
+        }
+    }
 
 
     public override string ToString(){
@@ -29,7 +52,14 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
     {
-        image.color = Color.green;
+        if (completed)
+        {
+            image.color = Color.gray;
+        }
+        else{
+            nodeColor = Color.yellow;
+            completed = true;   
+        }
     }
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
@@ -39,6 +69,6 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        image.color = Color.white;
+        image.color = nodeColor;
     }
 }

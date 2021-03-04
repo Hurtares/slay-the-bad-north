@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public float Sound = 100;
     public Race SelectedRace = Race.HUMAN;
     public static GameManager instance;
+    public BattleTree battleTree;
 
     private void Awake() {
         if (GameManager.instance != null)
