@@ -1,7 +1,9 @@
-﻿using System;
+﻿using System.Security.Cryptography.X509Certificates;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BattleController : MonoBehaviour
 {
@@ -9,13 +11,13 @@ public class BattleController : MonoBehaviour
     GameObject[] spawnPoints;
     GameObject[] playerSpawnPoint;
 
-    public static List<GameObject> playerUnits;
+    public List<GameObject> playerUnits;
     List<GameObject> aiUnits;
 
     public GameObject unitPrefab;
     public GameObject enemyUnit;
     List<GameObject> selectedUnits = new List<GameObject>();
-    
+
     [SerializeField]
     GameObject diamondObject = null;
 
@@ -53,6 +55,16 @@ public class BattleController : MonoBehaviour
 
     void Update()
     {
+
+         var enemies = getPlayerUnitsAI();
+         if(enemies.Count == 0 ) {
+             changeSceneWin();
+         }
+
+        if(diamondObject.GetComponent<DiamondController>().health <= 0) {
+            changeSceneLose();
+        }
+
         /*
         //Click the mouse button
         if (Input.GetMouseButtonDown(0))
@@ -126,16 +138,19 @@ public class BattleController : MonoBehaviour
                 {
                     GameObject currentUnit = playerUnits[i];
 
-                    //Is this unit within the square
-                    if (IsWithinPolygon(currentUnit.transform.position))
+                    if (currentUnit)
                     {
-                        currentUnit.GetComponent<Outline>().enabled = true;
-                        selectedUnits.Add(currentUnit);
-                    }
-                    //Otherwise deselect the unit if it's not in the square
-                    else
-                    {
-                        currentUnit.GetComponent<Outline>().enabled = false;
+                        //Is this unit within the square
+                        if (IsWithinPolygon(currentUnit.transform.position))
+                        {
+                            currentUnit.GetComponent<Outline>().enabled = true;
+                            selectedUnits.Add(currentUnit);
+                        }
+                        //Otherwise deselect the unit if it's not in the square
+                        else
+                        {
+                            currentUnit.GetComponent<Outline>().enabled = false;
+                        }
                     }
                 }
             }
@@ -186,7 +201,7 @@ public class BattleController : MonoBehaviour
         }
 
         //Drag the mouse to select all units within the square
-        if (isHoldingDown)
+        if (isHoldingDown && selectionRect)
         {
             //Activate the square selection image
             if (!selectionRect.gameObject.activeInHierarchy)
@@ -207,15 +222,18 @@ public class BattleController : MonoBehaviour
                 {
                     GameObject currentUnit = playerUnits[i];
 
-                    //Is this unit within the square
-                    if (IsWithinPolygon(currentUnit.transform.position))
+                    if (currentUnit)
                     {
-                        currentUnit.GetComponent<Outline>().enabled = true;
-                    }
-                    //Otherwise deactivate
-                    else
-                    {
-                        currentUnit.GetComponent<Outline>().enabled = false;
+                        //Is this unit within the square
+                        if (IsWithinPolygon(currentUnit.transform.position))
+                        {
+                            currentUnit.GetComponent<Outline>().enabled = true;
+                        }
+                        //Otherwise deactivate
+                        else
+                        {
+                            currentUnit.GetComponent<Outline>().enabled = false;
+                        }
                     }
                 }
             }
@@ -549,13 +567,41 @@ public class BattleController : MonoBehaviour
         foreach (var playerSpawnPoint in playerSpawnPoint)
         {
             var playerUnit = Instantiate(unitPrefab, playerSpawnPoint.transform.position, playerSpawnPoint.transform.rotation);
+            var unitNav = playerUnit.GetComponent<UnitNavigation>();
             playerUnit.tag = "Unit";
             playerUnit.layer = 9;
+            unitNav.controller = this;
             playerUnits.Add(playerUnit);
         }
     }
 
-    public GameObject getDiamondObject() {
+    public GameObject getDiamondObject()
+    {
         return diamondObject;
+    }
+
+    public List<GameObject> getPlayerUnitsAI()
+    {
+        List<GameObject> filtered = new List<GameObject>();
+
+        foreach (var pu in playerUnits)
+        {
+            var unitNav = pu.GetComponent<UnitNavigation>();
+            if (unitNav.isAI)
+            {
+                filtered.Add(pu);
+            }
+        }
+        return filtered;
+    }
+
+    public void changeSceneWin()
+    {
+        SceneManager.LoadScene("BrunoTestScene", LoadSceneMode.Single);
+    }
+
+    public void changeSceneLose()
+    {
+        SceneManager.LoadScene("Menu", LoadSceneMode.Single);
     }
 }

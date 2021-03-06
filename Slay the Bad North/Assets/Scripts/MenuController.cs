@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEditor;
-
 public enum Race
 {
     ELF,
@@ -50,7 +46,7 @@ public class MenuController : MonoBehaviour
     }
 
     public void startGame() {
-
+         SceneManager.LoadScene("BrunoTestScene", LoadSceneMode.Single);
     }
 
     public void selectRace(int race)

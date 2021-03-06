@@ -151,7 +151,13 @@ public class UnitNavigation : MonoBehaviour
 
         if (health < 0f)
         {
-            Destroy(this.gameObject);
+
+            Debug.Log("controller.playerUnits.Count");
+            Debug.Log(controller.playerUnits.Count);
+
+
+            controller.playerUnits.Remove(gameObject);
+            Destroy(gameObject);
         }
 
         healthBar.fillAmount = health;

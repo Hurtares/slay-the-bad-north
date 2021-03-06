@@ -10,6 +10,9 @@ public class CardUse : MonoBehaviour
     bool isSelected = false;
     static bool isUnique = false;
     
+    [SerializeField]
+    public BattleController controller;
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,7 +28,9 @@ public class CardUse : MonoBehaviour
                         var playerUnit = Instantiate(Unit, hit.point, Quaternion.identity);
                         playerUnit.tag = "Unit";
                         playerUnit.layer = 9;
-                        BattleController.playerUnits.Add(playerUnit);
+                        var unitNav = playerUnit.GetComponent<UnitNavigation>();
+                        unitNav.controller = controller;
+                        controller.playerUnits.Add(playerUnit);
                         Destroy (Card);
                         Hand.numCards--;
                         isSelected = false;

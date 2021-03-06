@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7907360134785395991}
   - component: {fileID: 2836024031292727458}
   - component: {fileID: 281825233590139908}
-  - component: {fileID: 3553257674428109159}
   m_Layer: 5
   m_Name: Card1
   m_TagString: Card
@@ -145,21 +144,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Card: {fileID: 7907360134785395994}
   Unit: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91, type: 3}
---- !u!114 &3553257674428109159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7907360134785395994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec62a2f7acf99d4f8ff1bca7a83b01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints: []
-  unitPrefab: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91,
-    type: 3}
-  diamondObject: {fileID: 0}
-  selectionRect: {fileID: 4558875079527375427, guid: ebd197af46618554ea448a53760ea7ae,
-    type: 3}

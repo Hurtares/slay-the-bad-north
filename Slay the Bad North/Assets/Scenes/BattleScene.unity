@@ -180,6 +180,7 @@ MonoBehaviour:
   Card1: {fileID: 7907360134785395994, guid: 2bee15a4d5f7fa841941637a0ba127b1, type: 3}
   Card2: {fileID: 7907360134785395994, guid: ba28403b874636d499bfc880b61d04fd, type: 3}
   PHand: {fileID: 67187851}
+  controller: {fileID: 1178124253}
 --- !u!1 &131353934
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +1944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolPoints: []
+  playerUnits: []
   unitPrefab: {fileID: 0}
   enemyUnit: {fileID: 8162751382951551427, guid: afbd71fda7633cf4b9750ef2f98679c8,
     type: 3}
@@ -3357,6 +3359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8578afa127d6f46bdee63422daf86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   healthBar: {fileID: 1454845391}
 --- !u!1 &1865719124
 GameObject:

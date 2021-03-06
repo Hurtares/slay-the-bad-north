@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DiamondController : MonoBehaviour
 {
-    float health = 10f;
+    public float health = 10f;
     public Image healthBar;
 
     void Start()
@@ -25,7 +25,8 @@ public class DiamondController : MonoBehaviour
 
         if (health < 0f)
         {
-            Destroy(this.gameObject);
+            // TODO CHECK WATH TO DO WHEN DIAMOND IS DESTROYED
+            //Destroy(this.gameObject);
         }
 
         healthBar.fillAmount = health / 10f;

@@ -13,8 +13,18 @@ public class Hand : MonoBehaviour
     public GameObject PHand;
     float draw_time;
     public static int numCards = 5;
+
+    [SerializeField]
+    BattleController controller;
+    
     void Start()
     {
+        CardUse cardUse1 = Card1.GetComponent<CardUse>();
+        cardUse1.controller = controller;
+        CardUse cardUse2 = Card2.GetComponent<CardUse>();
+        cardUse2.controller = controller;
+
+
         draw_time = Time.time + 10.0f;
         playerHand.Add(Card1);
         playerHand.Add(Card2);
