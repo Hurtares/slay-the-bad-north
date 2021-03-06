@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class BattleTree : MonoBehaviour
@@ -10,7 +11,15 @@ public class BattleTree : MonoBehaviour
     List<BattleNode> battleNodes;
     void Start()
     {
-        battleNodes = new List<BattleNode>();
+        if (GameManager.Instance.battleTree == null)
+        {
+            battleNodes = new List<BattleNode>();
+            GenerateBattleTree();
+        }
+        else{
+            battleNodes = GameManager.Instance.battleTree.battleNodes;
+        }
+        DrawBattleTree();
     }
 
     // Update is called once per frame
@@ -19,12 +28,14 @@ public class BattleTree : MonoBehaviour
 
     }
 
-    public void GenerateBattleTree()
+    void GenerateBattleTree()
     {
 
         for (int i = 0; i < 11; i++)
         {
             var battleNode = Instantiate(battleNodePrefab, this.transform);
+            var battleNodeImage = battleNode.GetComponent<Image>();
+            battleNodeImage.color = new Color((i+1f)/11,(i+1f)/11,(i+1f)/11);
             battleNode.prevNode = new List<BattleNode>();
             if (i > 5 && i <= 8)
             {
@@ -41,35 +52,51 @@ public class BattleTree : MonoBehaviour
                 battleNode.nodeLevel = i;
                 battleNode.nodeLayer = 0;
             }
-
-            battleNode.completed = false;
             battleNodes.Add(battleNode);
 
             if (i != 0)
             {
                 //se for o primeiro node de um dos ramos
-                if (battleNode.nodeLayer != 0 && battleNodes[i - 1].nodeLayer != battleNode.nodeLayer)
+                if (battleNodes.Where(n => n.nodeLayer == battleNode.nodeLayer).ToArray().Length == 1)
                 {
-                    //se nao for o primeiro ramo fecha o ramo anterior
-                    if (battleNodes[i - 1].nodeLayer != battleNode.nodeLayer && battleNodes[i - 1].nodeLayer != 0)
+                    if (battleNodes[i - 1].nodeLayer != 0)
                     {
                         battleNodes.First(n => n.nodeLayer == 0 && n.nodeLevel == battleNodes[i - 1].nodeLevel + 1).prevNode.Add(battleNodes[i - 1]);
                     }
                     battleNode.prevNode.Add(battleNodes.First(n => n.nodeLayer == 0 && n.nodeLevel == battleNode.nodeLevel - 1));
+                    
                 }
-                battleNode.prevNode.Add(battleNodes[i - 1]);
+                else{
+                    //se o anterior for o ultimo node vai buscar o node da linha principal para fechar
+                    // if (battleNodes[i - 1].nodeLayer != battleNode.nodeLayer)
+                    // {
+                    //     battleNodes.First(n => n.nodeLayer == 0 && n.nodeLevel == battleNodes[i - 1].nodeLevel + 1).prevNode.Add(battleNodes[i - 1]);
+                    // }
+                    if(battleNodes.Where(n => n.nodeLayer == battleNode.nodeLayer).ToArray().Length != 1)
+                        battleNode.prevNode.Add(battleNodes[i - 1]);
+                }
             }
         }
+        //execoes
+        battleNodes[0].state = NodeState.Open;
+        battleNodes[3].prevNode.Add(battleNodes[10]);
 
+        GameManager.Instance.battleTree = this;
+    }
+
+    public void DrawBattleTree(){
         battleNodes.ForEach(n => { 
             PlaceBattleNode(n);
+        });
+        battleNodes.ForEach(n => { 
             n.prevNode.ForEach(p => DrawLine(n,p));
-            });
+        });
     }
 
     void PlaceBattleNode(BattleNode node)
     {
-        node.transform.position = new Vector3(node.transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 100, node.transform.position.z);
+        node.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 25, transform.position.z);
+        node.UpdateNode();
     }
     void DrawLine(BattleNode prev, BattleNode next){
         RectTransform prevRect = prev.GetComponent<RectTransform>();
