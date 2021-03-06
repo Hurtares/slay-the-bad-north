@@ -9,11 +9,11 @@ public class BattleController : MonoBehaviour
     GameObject[] spawnPoints;
     GameObject[] playerSpawnPoint;
 
-    List<GameObject> playerUnits;
+    public static List<GameObject> playerUnits;
     List<GameObject> aiUnits;
 
     public GameObject unitPrefab;
-
+    public GameObject enemyUnit;
     List<GameObject> selectedUnits = new List<GameObject>();
     
     [SerializeField]
@@ -49,7 +49,6 @@ public class BattleController : MonoBehaviour
         findAllSpawnPoints();
 
         spawnWave();
-        spawnPlayerUnit();
     }
 
     void Update()
@@ -536,7 +535,7 @@ public class BattleController : MonoBehaviour
     {
         foreach (var spawnPoint in spawnPoints)
         {
-            var aiUnit = Instantiate(unitPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+            var aiUnit = Instantiate(enemyUnit, spawnPoint.transform.position, spawnPoint.transform.rotation);
             var unitNav = aiUnit.GetComponent<UnitNavigation>();
             aiUnit.layer = 10;
             unitNav.isAI = true;
