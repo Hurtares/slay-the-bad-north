@@ -597,6 +597,7 @@ public class BattleController : MonoBehaviour
 
     public void changeSceneWin()
     {
+        GameManager.Instance.currentNode.state = NodeState.Close;
         SceneManager.LoadScene("BrunoTestScene", LoadSceneMode.Single);
     }
 
