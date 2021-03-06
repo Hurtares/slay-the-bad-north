@@ -404,6 +404,9 @@ MonoBehaviour:
   controller: {fileID: 0}
   goal: {x: 0, y: 0, z: 0}
   isAI: 0
+  healthBarSprites:
+  - {fileID: 5972140380756631857, guid: 81f247c42955c0843908a7272c4f60ed, type: 3}
+  - {fileID: -2484030861835244207, guid: 81f247c42955c0843908a7272c4f60ed, type: 3}
 --- !u!114 &8162751382951551452
 MonoBehaviour:
   m_ObjectHideFlags: 0
