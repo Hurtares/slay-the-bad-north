@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Cards
+public class Card
 {
     public int cardID;
     public string cardName;
@@ -20,7 +20,7 @@ public class Cards
         Passive
     }
 
-    public Cards (int id, string name, string text, int attack, int defense, CardType type, GameObject prefab)
+    public Card (int id, string name, string text, int attack, int defense, CardType type, GameObject prefab)
     {
         cardID = id;
         cardName = name;
