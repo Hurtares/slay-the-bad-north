@@ -1579,6 +1579,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sound: 100
   SelectedRace: 2
+  battleTree: {fileID: 0}
+  currentNode: {fileID: 0}
 --- !u!4 &605726025
 Transform:
   m_ObjectHideFlags: 0
