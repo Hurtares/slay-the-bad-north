@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public BattleTree battleTree;
     public BattleNode currentNode;
     public Deck deck;
+    //remover mais tarde
+    public List<Card> verDeck;
 
     private void Awake() {
         if (GameManager.Instance != null)
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     public void AddCardsToDeck(){
         deck = new Deck();
+        Debug.Log(SelectedRace);
         deck.PopulateDeck(SelectedRace);
+        //remover mais tarde
+        verDeck = deck.deck;
     }
 }

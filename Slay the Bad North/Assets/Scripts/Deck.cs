@@ -22,9 +22,10 @@ public class Deck
 
     public void PopulateDeck(Race race){
         deckSize = 20;
+        deck = new List<Card>();
         for (int i = 0; i < deckSize; i++)
         {
-            deck[i] = CardsDatabase.cardDb[i%5];
+            deck.Add(CardsDatabase.cardDb[i%4]);
         }
     }
 

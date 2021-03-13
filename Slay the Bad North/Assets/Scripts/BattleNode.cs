@@ -69,6 +69,7 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
             if (state == NodeState.Open)
             {
+                GameManager.Instance.AddCardsToDeck();
                 GameManager.Instance.currentNode = this;
                 SceneManager.LoadScene(2);
             }

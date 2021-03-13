@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1671739243688181558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1671739243688181512}
+  - component: {fileID: 1671739243688181513}
+  m_Layer: 0
+  m_Name: CardDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1671739243688181512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671739243688181558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.719849, y: 54.37079, z: -74.05661}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1671739243688181513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671739243688181558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb00c54a1b462fd46bdedf330e4d09f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardArcher: {fileID: 7907360134785395994, guid: 2bee15a4d5f7fa841941637a0ba127b1,
+    type: 3}
+  cardKnight: {fileID: 7907360134785395994, guid: ba28403b874636d499bfc880b61d04fd,
+    type: 3}
+  cardLancer: {fileID: 7907360134785395994, guid: 2bee15a4d5f7fa841941637a0ba127b1,
+    type: 3}
+  cardMage: {fileID: 7907360134785395994, guid: ba28403b874636d499bfc880b61d04fd,
+    type: 3}
+  unitArcher: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91,
+    type: 3}
+  unitKnight: {fileID: 8162751382951551427, guid: 706b0598b8a64be4c98ea4e6aee1a96d,
+    type: 3}
+  unitLancer: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91,
+    type: 3}
+  unitMage: {fileID: 8162751382951551427, guid: 706b0598b8a64be4c98ea4e6aee1a96d,
+    type: 3}

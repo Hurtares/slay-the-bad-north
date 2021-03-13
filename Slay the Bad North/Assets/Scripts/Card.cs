@@ -22,7 +22,7 @@ public class Card
         Passive
     }
 
-    public Card (int id, string name, string text, int attack, int defense, CardType type, GameObject prefab)
+    public Card (int id, string name, string text, int attack, int defense, CardType type, GameObject cardPrefab, GameObject unitPrefab)
     {
         cardID = id;
         cardName = name;
@@ -30,6 +30,7 @@ public class Card
         cardAttack = attack;
         cardDefense = defense;
         cardType = type;
-        cardPrefab = prefab;
+        this.cardPrefab = cardPrefab;
+        this.unitPrefab = unitPrefab;
     }
 }
