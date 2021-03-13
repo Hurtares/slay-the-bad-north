@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 131353936}
   - component: {fileID: 131353935}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: SelectionSquareCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 689483544}
   - component: {fileID: 689483543}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PlayerHandCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1690,6 +1690,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1698,6 +1699,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1706,6 +1708,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1714,6 +1717,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1722,6 +1726,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1730,6 +1735,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1738,6 +1744,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1746,6 +1753,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1754,6 +1762,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1762,6 +1771,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1770,6 +1780,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1778,6 +1789,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1786,6 +1798,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1794,6 +1807,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1802,6 +1816,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1810,6 +1825,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1818,6 +1834,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   - cardID: 0
     cardName: 
     cardAttack: 0
@@ -1826,6 +1843,7 @@ MonoBehaviour:
     cardImg: {fileID: 0}
     cardType: 0
     cardPrefab: {fileID: 0}
+    unitPrefab: {fileID: 0}
   x: 0
   deckSize: 0
 --- !u!4 &1107246935
@@ -3441,6 +3459,53 @@ Transform:
   - {fileID: 1536896291}
   m_Father: {fileID: 531658042}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1739170356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739170358}
+  - component: {fileID: 1739170357}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1739170357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739170356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418d1e029e43952478aaaa72033b5ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: 100
+  SelectedRace: 2
+  battleTree: {fileID: 0}
+  currentNode: {fileID: 0}
+--- !u!4 &1739170358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739170356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 886.3011, y: 360.4077, z: -185.72546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759860592
 GameObject:
