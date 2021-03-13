@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    //public List<Cards> playerHand = new List<Cards>();
-    //public Cards Card1;
-    //public Cards Card2;
     public List<Card> playerHand;
-    public GameObject Card1;
-    public GameObject Card2;
     public GameObject PHand;
     float draw_time;
-    public static int numCards = 5;
 
     [SerializeField]
     BattleController controller;
     
     void Start()
     {
-        CardUse cardUse1 = Card1.GetComponent<CardUse>();
-        cardUse1.controller = controller;
-        CardUse cardUse2 = Card2.GetComponent<CardUse>();
-        cardUse2.controller = controller;
-
-
         draw_time = Time.time + 10.0f;
         for (int i = 0; i < 5; i++)
         {
+            //pedir cartas ao deck em vez de ir buscar por index
             playerHand.Add(GameManager.Instance.deck.deck[i]);
         }
         foreach (var card in playerHand)
@@ -35,12 +24,12 @@ public class Hand : MonoBehaviour
             GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             drawnCard.GetComponent<CardUse>().hand = this;
             drawnCard.GetComponent<CardUse>().card = card;
+            drawnCard.GetComponent<CardUse>().controller = controller;
             drawnCard.transform.SetParent(PHand.transform, false);
         }
     }
 
     public void RemoveCard(Card card){
-        //faz coisas
         playerHand.Remove(card);
     }
 
@@ -51,6 +40,7 @@ public class Hand : MonoBehaviour
             draw_time = Time.time + 10.0f;
             if (playerHand.Count < 10)
             {
+                //pedir cartas ao deck em vez de ir buscar por index
                 playerHand.Add(GameManager.Instance.deck.deck[5]);
             }
             foreach (Transform child in PHand.transform)
@@ -62,6 +52,7 @@ public class Hand : MonoBehaviour
                 GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                 drawnCard.GetComponent<CardUse>().hand = this;
                 drawnCard.GetComponent<CardUse>().card = card;
+                drawnCard.GetComponent<CardUse>().controller = controller;
                 drawnCard.transform.SetParent(PHand.transform, false);
             }
             

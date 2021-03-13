@@ -17,7 +17,6 @@ public class Deck
             x = Random.Range(1, 4);
             deck[i] = CardsDatabase.cardDb[x];
         }*/
-
     }
 
     public void PopulateDeck(Race race){
