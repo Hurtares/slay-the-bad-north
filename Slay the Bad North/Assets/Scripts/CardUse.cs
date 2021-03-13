@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class CardUse : MonoBehaviour
 {
-    public GameObject Card;
+    public Card card;
+    public Hand hand;
     public GameObject Unit;
     bool isSelected = false;
     static bool isUnique = false;
@@ -31,8 +32,9 @@ public class CardUse : MonoBehaviour
                         var unitNav = playerUnit.GetComponent<UnitNavigation>();
                         unitNav.controller = controller;
                         controller.playerUnits.Add(playerUnit);
-                        Destroy (Card);
-                        Hand.numCards--;
+                        //Remove card from hand
+                        hand.RemoveCard(card);
+                        Destroy (this.gameObject);
                         isSelected = false;
                         isUnique = false;
                     }
@@ -45,7 +47,7 @@ public class CardUse : MonoBehaviour
     {
         if (!isSelected && !isUnique)
         {
-            Card.transform.localScale += new Vector3(0.2f, 0.2f, 0);
+            transform.localScale += new Vector3(0.2f, 0.2f, 0);
             isSelected = true;
             isUnique = true;
         }
@@ -54,7 +56,7 @@ public class CardUse : MonoBehaviour
         {
                 if (isSelected)
                 {
-                    Card.transform.localScale -= new Vector3(0.2f, 0.2f, 0);
+                    transform.localScale -= new Vector3(0.2f, 0.2f, 0);
                     isSelected = false;
                     isUnique = false;
                 }

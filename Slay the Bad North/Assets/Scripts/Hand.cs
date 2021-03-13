@@ -7,7 +7,7 @@ public class Hand : MonoBehaviour
     //public List<Cards> playerHand = new List<Cards>();
     //public Cards Card1;
     //public Cards Card2;
-    public List<GameObject> playerHand = new List<GameObject>();
+    public List<Card> playerHand;
     public GameObject Card1;
     public GameObject Card2;
     public GameObject PHand;
@@ -26,13 +26,22 @@ public class Hand : MonoBehaviour
 
 
         draw_time = Time.time + 10.0f;
-        playerHand.Add(Card1);
-        playerHand.Add(Card2);
-        for (var i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
-            GameObject drawnCard = Instantiate(playerHand[Random.Range(0, playerHand.Count)], new Vector3(0, 0, 0), Quaternion.identity);
+            playerHand.Add(GameManager.Instance.deck.deck[i]);
+        }
+        foreach (var card in playerHand)
+        {
+            GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            drawnCard.GetComponent<CardUse>().hand = this;
+            drawnCard.GetComponent<CardUse>().card = card;
             drawnCard.transform.SetParent(PHand.transform, false);
         }
+    }
+
+    public void RemoveCard(Card card){
+        //faz coisas
+        playerHand.Remove(card);
     }
 
     void Update()
@@ -40,11 +49,20 @@ public class Hand : MonoBehaviour
         if (Time.time > draw_time)
         {
             draw_time = Time.time + 10.0f;
-            if (numCards < 10)
+            if (playerHand.Count < 10)
             {
-                GameObject drawnCard = Instantiate(playerHand[Random.Range(0, playerHand.Count)], new Vector3(0, 0, 0), Quaternion.identity);
+                playerHand.Add(GameManager.Instance.deck.deck[5]);
+            }
+            foreach (Transform child in PHand.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (var card in playerHand)
+            {
+                GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                drawnCard.GetComponent<CardUse>().hand = this;
+                drawnCard.GetComponent<CardUse>().card = card;
                 drawnCard.transform.SetParent(PHand.transform, false);
-                numCards++;
             }
             
         }
