@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public BattleTree battleTree;
     public BattleNode currentNode;
+    public Deck deck;
 
     private void Awake() {
         if (GameManager.Instance != null)
@@ -17,5 +18,10 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+    }
+
+    public void AddCardsToDeck(){
+        deck = new Deck();
+        deck.PopulateDeck(SelectedRace);
     }
 }
