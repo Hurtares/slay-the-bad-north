@@ -13,6 +13,8 @@ public class Card
     public Texture2D cardImg;
     public CardType cardType;
     public GameObject cardPrefab;
+    public GameObject unitPrefab;
+    
     public enum CardType
     {
         Unit,
