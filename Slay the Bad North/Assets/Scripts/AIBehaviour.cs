@@ -217,6 +217,8 @@ namespace UnitAI
                             lastAttack = Time.time;
                             var diamondController = diamond.GetComponent<DiamondController>();
                             diamondController.removeLife(0.1f);
+
+                            checkUnitAround(nav);
                         }
                     }
 
@@ -226,6 +228,32 @@ namespace UnitAI
             else
             {
                 nav.setActiveAIBehavior<PatrolBehaviour>();
+            }
+        }
+
+        void checkUnitAround(UnitNavigation nav) {
+              // FIND ENEMIES
+            int layerMask = 1 << 9;
+            var collider = Physics.OverlapSphere(nav.transform.position, 2f, layerMask);
+
+            Collider possibleEnemy = null;
+            float minorDistance = -1f;
+
+            foreach (var enemy in collider)
+            {
+                float dist = Vector3.Distance(enemy.transform.position, nav.transform.position);
+                if (dist < minorDistance || minorDistance == -1)
+                {
+                    minorDistance = dist;
+                    possibleEnemy = enemy;
+                }
+            }
+
+            if (possibleEnemy)
+            {
+                nav.setUnitToAttack(possibleEnemy.gameObject);
+                nav.setActiveAIBehavior<AttackBehaviour>();
+                return;
             }
         }
 

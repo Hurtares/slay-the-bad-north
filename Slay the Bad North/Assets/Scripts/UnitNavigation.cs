@@ -157,6 +157,7 @@ public class UnitNavigation : MonoBehaviour
 
 
             controller.playerUnits.Remove(gameObject);
+            controller.selectedUnits.Remove(gameObject);
             Destroy(gameObject);
         }
 

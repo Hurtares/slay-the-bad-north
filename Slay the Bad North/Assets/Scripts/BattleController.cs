@@ -16,7 +16,7 @@ public class BattleController : MonoBehaviour
 
     public GameObject unitPrefab;
     public GameObject enemyUnit;
-    List<GameObject> selectedUnits = new List<GameObject>();
+    public List<GameObject> selectedUnits = new List<GameObject>();
 
     [SerializeField]
     GameObject diamondObject = null;
@@ -56,12 +56,14 @@ public class BattleController : MonoBehaviour
     void Update()
     {
 
-         var enemies = getPlayerUnitsAI();
-         if(enemies.Count == 0 ) {
-             changeSceneWin();
-         }
+        var enemies = getPlayerUnitsAI();
+        if (enemies.Count == 0)
+        {
+            changeSceneWin();
+        }
 
-        if(diamondObject.GetComponent<DiamondController>().health <= 0) {
+        if (diamondObject.GetComponent<DiamondController>().health <= 0)
+        {
             changeSceneLose();
         }
 
@@ -180,7 +182,10 @@ public class BattleController : MonoBehaviour
             //Deselect all units
             for (int i = 0; i < selectedUnits.Count; i++)
             {
-                selectedUnits[i].GetComponent<Outline>().enabled = false;
+                if (selectedUnits[i])
+                {
+                    selectedUnits[i].GetComponent<Outline>().enabled = false;
+                }
             }
 
             //Clear the list with selected units
@@ -511,10 +516,13 @@ public class BattleController : MonoBehaviour
         {
             foreach (var selectedUnit in selectedUnits)
             {
-                var unitNav = selectedUnit.GetComponent<UnitNavigation>();
-                unitNav.goal = hit.point;
-                unitNav.setUnitToAttack(null);
-                unitNav.MoveTo();
+                if (selectedUnit)
+                {
+                    var unitNav = selectedUnit.GetComponent<UnitNavigation>();
+                    unitNav.goal = hit.point;
+                    unitNav.setUnitToAttack(null);
+                    unitNav.MoveTo();
+                }
             }
         }
     }
