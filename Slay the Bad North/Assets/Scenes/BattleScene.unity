@@ -1323,6 +1323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHand: []
   PHand: {fileID: 67187851}
+  cardPrefab: {fileID: -7928368586305900393, guid: 2bee15a4d5f7fa841941637a0ba127b1,
+    type: 3}
   controller: {fileID: 1178124253}
 --- !u!1001 &77320608
 PrefabInstance:
@@ -18136,7 +18138,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 689234477}
-  - {fileID: 543450652704923028}
   - {fileID: 1432515929}
   - {fileID: 29745825}
   - {fileID: 424305536}
@@ -18271,6 +18272,7 @@ Transform:
   - {fileID: 1340936029}
   - {fileID: 1184578533}
   - {fileID: 1411641729}
+  - {fileID: 1085507612617271524}
   - {fileID: 44620789}
   - {fileID: 634624401}
   m_Father: {fileID: 0}
@@ -21846,7 +21848,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1566238362}
-  - {fileID: 1900450469}
   - {fileID: 301728305}
   - {fileID: 245478429}
   - {fileID: 1828873923}
@@ -21971,6 +21972,7 @@ Transform:
   - {fileID: 1376366754}
   - {fileID: 1583978519}
   - {fileID: 590740418}
+  - {fileID: 1900450469}
   - {fileID: 258782680}
   - {fileID: 1222887372}
   - {fileID: 1570116388}
@@ -29937,6 +29939,7 @@ MonoBehaviour:
   SelectedRace: 2
   battleTree: {fileID: 0}
   currentNode: {fileID: 0}
+  cardDatabase: {fileID: 0}
   verDeck: []
 --- !u!4 &1739170358
 Transform:
@@ -32503,8 +32506,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 1e8df85671354a34583190e86d040ea0, type: 3}
 --- !u!4 &1900450469 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 620025676650952055, guid: 1e8df85671354a34583190e86d040ea0,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 1900450468}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1910119337
@@ -35633,12 +35635,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2145312799}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &543450652704923028 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 620025676650952055, guid: 1e8df85671354a34583190e86d040ea0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1085507612617271523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1085507612617271523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35708,3 +35704,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e8df85671354a34583190e86d040ea0, type: 3}
+--- !u!4 &1085507612617271524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 1085507612617271523}
+  m_PrefabAsset: {fileID: 0}

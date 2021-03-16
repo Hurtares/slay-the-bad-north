@@ -1,36 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[System.Serializable]
-public class Card
+public enum CardType
+{
+    Unit,
+    Magic,
+    Passive
+}
+[CreateAssetMenu(fileName = "NewCard",menuName = "Card")]
+public class Card : ScriptableObject
 {
     public int cardID;
     public string cardName;
     public int cardAttack;
     public int cardDefense;
     public string cardText;
-    public Texture2D cardImg;
+    public Sprite cardImg;
     public CardType cardType;
-    public GameObject cardPrefab;
     public GameObject unitPrefab;
-    
-    public enum CardType
-    {
-        Unit,
-        Magic,
-        Passive
-    }
-
-    public Card (int id, string name, string text, int attack, int defense, CardType type, GameObject cardPrefab, GameObject unitPrefab)
-    {
-        cardID = id;
-        cardName = name;
-        cardText = text;
-        cardAttack = attack;
-        cardDefense = defense;
-        cardType = type;
-        this.cardPrefab = cardPrefab;
-        this.unitPrefab = unitPrefab;
-    }
+     
 }

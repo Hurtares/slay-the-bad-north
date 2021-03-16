@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 7907360134785395995}
   - component: {fileID: 7907360134785395990}
   - component: {fileID: 7907360134785395991}
-  - component: {fileID: 7473568330168757136}
-  - component: {fileID: 8223887989708059626}
+  - component: {fileID: 2836024031292727458}
+  - component: {fileID: 281825233590139908}
+  - component: {fileID: -7928368586305900393}
   m_Layer: 5
-  m_Name: Card2
+  m_Name: Card
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d5e231407ade414439ef9de552aea029, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be3486101d462b343afb9a3d01d9e563, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7473568330168757136
+--- !u!114 &2836024031292727458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +120,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8223887989708059626}
+      - m_Target: {fileID: 281825233590139908}
         m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
@@ -130,7 +131,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8223887989708059626
+--- !u!114 &281825233590139908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,16 +143,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37b7616f6b84d53479da3e57a9f73abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card:
-    cardID: 0
-    cardName: 
-    cardAttack: 0
-    cardDefense: 0
-    cardText: 
-    cardImg: {fileID: 0}
-    cardType: 0
-    cardPrefab: {fileID: 0}
-    unitPrefab: {fileID: 0}
+  card: {fileID: 0}
   hand: {fileID: 0}
-  Unit: {fileID: 8162751382951551427, guid: 706b0598b8a64be4c98ea4e6aee1a96d, type: 3}
+  Unit: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91, type: 3}
   controller: {fileID: 0}
+--- !u!114 &-7928368586305900393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7907360134785395994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6867b2bbdc217334098dbffc92466fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 0}
+  cardImage: {fileID: 7907360134785395991}

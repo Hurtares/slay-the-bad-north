@@ -7,7 +7,6 @@ public class CardUse : MonoBehaviour
 {
     public Card card;
     public Hand hand;
-    public GameObject Unit;
     bool isSelected = false;
     static bool isUnique = false;
     
@@ -26,7 +25,7 @@ public class CardUse : MonoBehaviour
                 {
                     if (isSelected)
                     {
-                        var playerUnit = Instantiate(Unit, hit.point, Quaternion.identity);
+                        var playerUnit = Instantiate(card.unitPrefab, hit.point, Quaternion.identity);
                         playerUnit.tag = "Unit";
                         playerUnit.layer = 9;
                         var unitNav = playerUnit.GetComponent<UnitNavigation>();

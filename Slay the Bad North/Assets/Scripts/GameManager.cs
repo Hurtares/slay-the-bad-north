@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public BattleTree battleTree;
     public BattleNode currentNode;
     public Deck deck;
+    public CardDatabase cardDatabase;
     //remover mais tarde
     public List<Card> verDeck;
 
