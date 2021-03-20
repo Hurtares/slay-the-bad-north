@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5474224305747089918}
   - component: {fileID: 5474224305747089919}
   - component: {fileID: 1530982415}
+  - component: {fileID: 6443729226972035881}
   m_Layer: 5
   m_Name: BattleNode
   m_TagString: Untagged
@@ -88,3 +89,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5474224305747089919}
+  state: 0
+--- !u!114 &6443729226972035881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474224305747089913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6192fba9ed9360644a037cb2647766ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

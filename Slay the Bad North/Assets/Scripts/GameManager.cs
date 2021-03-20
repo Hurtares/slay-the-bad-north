@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public float Sound = 100;
     public Race SelectedRace = Race.HUMAN;
     public static GameManager Instance;
-    public BattleTree battleTree;
+    public List<BattleNode> battleTree;
     public BattleNode currentNode;
     public Deck deck;
     public CardDatabase cardDatabase;

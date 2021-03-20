@@ -6,18 +6,20 @@ using System.Linq;
 
 public class BattleTree : MonoBehaviour
 {
-    [SerializeField] BattleNode battleNodePrefab;
+    [SerializeField] NodeDisplay battleNodePrefab;
     [SerializeField] RectTransform linePrefab;
     List<BattleNode> battleNodes;
+    Dictionary<BattleNode,GameObject> NodeObjectRelation;
     void Start()
     {
+        NodeObjectRelation = new Dictionary<BattleNode, GameObject>();
         if (GameManager.Instance.battleTree == null)
         {
             battleNodes = new List<BattleNode>();
             GenerateBattleTree();
         }
         else{
-            battleNodes = GameManager.Instance.battleTree.battleNodes;
+            battleNodes = GameManager.Instance.battleTree;
         }
         DrawBattleTree();
     }
@@ -33,9 +35,8 @@ public class BattleTree : MonoBehaviour
 
         for (int i = 0; i < 11; i++)
         {
-            var battleNode = Instantiate(battleNodePrefab, this.transform);
-            var battleNodeImage = battleNode.GetComponent<Image>();
-            battleNodeImage.color = new Color((i+1f)/11,(i+1f)/11,(i+1f)/11);
+            var battleNode = new BattleNode(); 
+            //ir buscar a imagem ao battle node e meter quando faz draw tree
             battleNode.prevNode = new List<BattleNode>();
             if (i > 5 && i <= 8)
             {
@@ -81,7 +82,7 @@ public class BattleTree : MonoBehaviour
         battleNodes[0].state = NodeState.Open;
         battleNodes[3].prevNode.Add(battleNodes[10]);
 
-        GameManager.Instance.battleTree = this;
+        GameManager.Instance.battleTree = battleNodes;
     }
 
     public void DrawBattleTree(){
@@ -95,8 +96,13 @@ public class BattleTree : MonoBehaviour
 
     void PlaceBattleNode(BattleNode node)
     {
-        node.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 25, transform.position.z);
         node.UpdateNode();
+        var battleNodeDisplay= Instantiate(battleNodePrefab, this.transform);
+        var battleNodeImage = battleNodeDisplay.GetComponent<Image>();
+        battleNodeImage.color = node.nodeColor;
+        //preciso de ir buscar o objeto atraves do node
+        battleNodeDisplay.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 25, transform.position.z);
+        
     }
     void DrawLine(BattleNode prev, BattleNode next){
         RectTransform prevRect = prev.GetComponent<RectTransform>();

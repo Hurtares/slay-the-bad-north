@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.CompilerServices;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public enum BattleNodeType
@@ -19,9 +15,10 @@ public enum NodeState{
     Completed
 }
 
-public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
+[System.Serializable]
+public class BattleNode
 {
-    [SerializeField] Image image;
+    public Sprite nodeSprite;
     public List<BattleNode> prevNode{get;set;}
     public int nodeLevel{get;set;}
     public int nodeLayer{get;set;}
@@ -35,7 +32,6 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         }
         set{
             _nodeColor = value;
-            image.color = _nodeColor;
         }
     }
 
@@ -59,8 +55,7 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         return $" PreviousNodes:{numberOfNodes}, NodeLevel:{nodeLevel}, Completed:{state == NodeState.Completed}";
     }
 
-    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
-    {
+    public void OnClickAction(){
         if (state == NodeState.Completed)
         {
             //color/sound feedback que nao funciona
@@ -75,14 +70,5 @@ public class BattleNode : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
             }
         }
     }
-
-    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
-    {
-        image.color = Color.cyan;
-    }
-
-    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
-    {
-        image.color = nodeColor;
-    }
+    
 }
