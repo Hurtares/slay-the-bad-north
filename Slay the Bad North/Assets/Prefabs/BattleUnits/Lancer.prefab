@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 8162751382951551452}
   - component: {fileID: 2349054758240729183}
   m_Layer: 0
-  m_Name: BattleUnit2
+  m_Name: Lancer
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de1650acae1893247b332f707a4f5352, type: 2}
+  - {fileID: 2100000, guid: e751e35180b5b9b4e858ae2033ce8d81, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -43,19 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb00c54a1b462fd46bdedf330e4d09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardArcher: {fileID: 7907360134785395994, guid: 2bee15a4d5f7fa841941637a0ba127b1,
-    type: 3}
-  cardKnight: {fileID: 7907360134785395994, guid: ba28403b874636d499bfc880b61d04fd,
-    type: 3}
-  cardLancer: {fileID: 7907360134785395994, guid: 2bee15a4d5f7fa841941637a0ba127b1,
-    type: 3}
-  cardMage: {fileID: 7907360134785395994, guid: ba28403b874636d499bfc880b61d04fd,
-    type: 3}
-  unitArcher: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91,
-    type: 3}
-  unitKnight: {fileID: 8162751382951551427, guid: 706b0598b8a64be4c98ea4e6aee1a96d,
-    type: 3}
-  unitLancer: {fileID: 8162751382951551427, guid: 46f7dee76d795ed4da34eb77511ced91,
-    type: 3}
-  unitMage: {fileID: 8162751382951551427, guid: 706b0598b8a64be4c98ea4e6aee1a96d,
-    type: 3}
+  cardDb:
+  - {fileID: 11400000, guid: 51a2eedbae4a3af49acfe2f104c9d300, type: 2}
+  - {fileID: 11400000, guid: 0ef0c76e5421b344b9104fbd1e8da662, type: 2}
+  - {fileID: 11400000, guid: 374828e3ad25dc54d8bddf44d18f7624, type: 2}
+  - {fileID: 11400000, guid: fdf38b172b699eb429181586e546ec9c, type: 2}

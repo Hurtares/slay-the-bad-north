@@ -24,7 +24,7 @@ public class Deck
         deck = new List<Card>();
         for (int i = 0; i < deckSize; i++)
         {
-            deck.Add(CardsDatabase.cardDb[i%4]);
+            deck.Add(GameManager.Instance.cardDatabase.cardDb[i%4]);
         }
     }
 

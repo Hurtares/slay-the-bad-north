@@ -7,9 +7,8 @@ public class Hand : MonoBehaviour
     public List<Card> playerHand;
     public GameObject PHand;
     float draw_time;
-
-    [SerializeField]
-    BattleController controller;
+    [SerializeField] CardDisplay cardPrefab;
+    [SerializeField] BattleController controller;
     
     void Start()
     {
@@ -21,9 +20,10 @@ public class Hand : MonoBehaviour
         }
         foreach (var card in playerHand)
         {
-            GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject drawnCard = Instantiate(cardPrefab.gameObject, new Vector3(0, 0, 0), Quaternion.identity);
             drawnCard.GetComponent<CardUse>().hand = this;
             drawnCard.GetComponent<CardUse>().card = card;
+            drawnCard.GetComponent<CardDisplay>().card = card;
             drawnCard.GetComponent<CardUse>().controller = controller;
             drawnCard.transform.SetParent(PHand.transform, false);
         }
@@ -49,9 +49,10 @@ public class Hand : MonoBehaviour
             }
             foreach (var card in playerHand)
             {
-                GameObject drawnCard = Instantiate(card.cardPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                GameObject drawnCard = Instantiate(cardPrefab.gameObject, new Vector3(0, 0, 0), Quaternion.identity);
                 drawnCard.GetComponent<CardUse>().hand = this;
                 drawnCard.GetComponent<CardUse>().card = card;
+                drawnCard.GetComponent<CardDisplay>().card = card;
                 drawnCard.GetComponent<CardUse>().controller = controller;
                 drawnCard.transform.SetParent(PHand.transform, false);
             }
