@@ -8,6 +8,8 @@ public class BattleTree : MonoBehaviour
 {
     [SerializeField] BattleNode battleNodePrefab;
     [SerializeField] RectTransform linePrefab;
+     [SerializeField] Sprite icon;
+
     List<BattleNode> battleNodes;
     void Start()
     {
@@ -35,7 +37,8 @@ public class BattleTree : MonoBehaviour
         {
             var battleNode = Instantiate(battleNodePrefab, this.transform);
             var battleNodeImage = battleNode.GetComponent<Image>();
-            battleNodeImage.color = new Color((i+1f)/11,(i+1f)/11,(i+1f)/11);
+            battleNodeImage.sprite = icon;
+            //battleNodeImage.color = new Color((i+1f)/11,(i+1f)/11,(i+1f)/11);
             battleNode.prevNode = new List<BattleNode>();
             if (i > 5 && i <= 8)
             {
