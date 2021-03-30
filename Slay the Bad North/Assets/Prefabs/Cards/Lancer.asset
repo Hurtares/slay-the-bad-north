@@ -17,7 +17,7 @@ MonoBehaviour:
   cardAttack: 0
   cardDefense: 0
   cardText: 
-  cardImg: {fileID: 21300000, guid: da13d426175a69d42af6fd688c05fa50, type: 3}
+  cardImg: {fileID: 21300000, guid: 5a3f4039f1200d84e99b90b368b9cd45, type: 3}
   cardType: 0
   unitPrefab: {fileID: 8162751382951551427, guid: 9bafd9e219eb5fe44a62182b5e339d0f,
     type: 3}

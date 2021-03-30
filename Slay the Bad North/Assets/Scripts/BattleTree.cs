@@ -101,7 +101,7 @@ public class BattleTree : MonoBehaviour
         battleNodeDisplay.node = node;
         NodeObjectRelation.Add(node,battleNodeDisplay.gameObject);
         //preciso de ir buscar o objeto atraves do node
-        battleNodeDisplay.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 25, transform.position.z);
+        battleNodeDisplay.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 250, transform.position.z);
         
     }
     void DrawLine(BattleNode prev, BattleNode next){
