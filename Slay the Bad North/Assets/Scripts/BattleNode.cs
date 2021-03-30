@@ -15,7 +15,6 @@ public enum NodeState{
     Completed
 }
 
-[System.Serializable]
 public class BattleNode
 {
     public Sprite nodeSprite;
@@ -35,16 +34,26 @@ public class BattleNode
         }
     }
 
+    public BattleNode(){
+        prevNode = new List<BattleNode>();
+    }
+
     public void UpdateNode(){
         if (state == NodeState.Completed)
         {
             nodeColor = Color.red;
         }else
         {
+            Debug.Log(prevNode);
+            Debug.Log(prevNode.Find(n => n.state == NodeState.Completed==true));
             if (prevNode.Find(n => n.state == NodeState.Completed==true)!=null)
             {
                 nodeColor = Color.green;
                 state = NodeState.Open;
+            }
+            if (state == NodeState.Open)
+            {
+                nodeColor = Color.green;
             }
         }
     }

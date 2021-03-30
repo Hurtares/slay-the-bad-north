@@ -10,7 +10,6 @@ public class NodeDisplay : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
     [SerializeField] Image nodeImage;
     void Start()
     {
-        nodeImage.sprite = node.nodeSprite;
         nodeImage.color = node.nodeColor;
     }
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)

@@ -37,7 +37,6 @@ public class BattleTree : MonoBehaviour
         {
             var battleNode = new BattleNode(); 
             //ir buscar a imagem ao battle node e meter quando faz draw tree
-            battleNode.prevNode = new List<BattleNode>();
             if (i > 5 && i <= 8)
             {
                 battleNode.nodeLevel = i - 5;
@@ -77,6 +76,7 @@ public class BattleTree : MonoBehaviour
                         battleNode.prevNode.Add(battleNodes[i - 1]);
                 }
             }
+
         }
         //execoes
         battleNodes[0].state = NodeState.Open;
@@ -97,16 +97,16 @@ public class BattleTree : MonoBehaviour
     void PlaceBattleNode(BattleNode node)
     {
         node.UpdateNode();
-        var battleNodeDisplay= Instantiate(battleNodePrefab, this.transform);
-        var battleNodeImage = battleNodeDisplay.GetComponent<Image>();
-        battleNodeImage.color = node.nodeColor;
+        var battleNodeDisplay = Instantiate(battleNodePrefab, this.transform);
+        battleNodeDisplay.node = node;
+        NodeObjectRelation.Add(node,battleNodeDisplay.gameObject);
         //preciso de ir buscar o objeto atraves do node
         battleNodeDisplay.transform.position = new Vector3(transform.position.x + (node.nodeLayer * 100), (node.nodeLevel * 100) + 25, transform.position.z);
         
     }
     void DrawLine(BattleNode prev, BattleNode next){
-        RectTransform prevRect = prev.GetComponent<RectTransform>();
-        RectTransform nextRect = next.GetComponent<RectTransform>();
+        RectTransform prevRect = NodeObjectRelation[prev].GetComponent<RectTransform>();
+        RectTransform nextRect = NodeObjectRelation[next].GetComponent<RectTransform>();
         RectTransform aux;
 
         if (prevRect.localPosition.x>nextRect.localPosition.x)
